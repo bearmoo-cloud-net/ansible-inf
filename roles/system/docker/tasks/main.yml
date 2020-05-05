@@ -1,0 +1,27 @@
+---
+- name: "Install docker deps"
+  yum: name="{{ item }}" state=present
+  with_items:
+  - yum-utils
+  - device-mapper-persistent-data
+  - lvm2
+
+- name: Add repository docker-ce
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docer-ce.repo
+
+- name: "Install docker"
+  yum: name=docker-ce state=present
+
+- name: "Enable docker service"
+  service: name=docker state=started enabled=yes
+
+- name: "Ensure docker is started and enabled on boot."
+  service: name=docker state=started enabled=yes
+
+- name: "Setting virt_sandbox_use_fusefs"
+  seboolean:
+    name: virt_sandbox_use_fusefs
+    state: yes
+    persistent: yes

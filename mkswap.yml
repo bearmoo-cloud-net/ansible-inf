@@ -1,0 +1,7 @@
+---
+- hosts: all
+  vars_files:
+  - config/system.yml
+  become: yes
+  roles:
+  - system/swapfile

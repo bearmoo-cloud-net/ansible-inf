@@ -1,0 +1,8 @@
+---
+- name: "remove yum auto update"
+  file:
+    state: absent
+    path: "{{ item }}"
+  with_items:
+  - /etc/cron.daily/0yum-daily.cron
+  - /etc/cron.hourly/0yum-hourly.cron

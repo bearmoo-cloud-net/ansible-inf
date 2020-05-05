@@ -1,0 +1,7 @@
+---
+- hosts: all
+  vars_files:
+  - config/system.yml
+  roles:
+  - system/postfix
+  - world/gcs-remove-yum-auto

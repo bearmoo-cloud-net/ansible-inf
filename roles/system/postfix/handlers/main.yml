@@ -1,0 +1,8 @@
+---
+# handlers file for autofs
+- name: restart network services
+  service: name=network state=restarted
+
+#---
+#- name: "Reload network services"
+#  systemd: name=network state=started
